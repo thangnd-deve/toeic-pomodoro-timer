@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOEIC Pomodoro Timer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🎯 TOEIC Pomodoro Timer</h1>
+            <p class="subtitle">Stay focused, study smart</p>
+        </header>
+
+        <!-- Main Timer Section -->
+        <main>
+            <div class="timer-card">
+                <div class="session-type" id="sessionType">WORK SESSION</div>
+                <div class="timer-display" id="timerDisplay">35:00</div>
+
+                <!-- Control Buttons -->
+                <div class="controls">
+                    <button id="startBtn" class="btn btn-primary">
+                        <span class="icon">▶</span> Start
+                    </button>
+                    <button id="pauseBtn" class="btn btn-secondary" disabled>
+                        <span class="icon">⏸</span> Pause
+                    </button>
+                    <button id="resetBtn" class="btn btn-danger">
+                        <span class="icon">⏹</span> Reset
+                    </button>
+                </div>
+
+                <!-- Progress Tracker -->
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Daily Progress</span>
+                        <span id="sessionCount">0/11</span>
+                    </div>
+                    <div class="progress-dots" id="progressDots"></div>
+                    <div class="study-stats">
+                        <div class="stat">
+                            <span class="stat-label">Study Time</span>
+                            <span class="stat-value" id="studyTime">0h 0m</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Break Time</span>
+                            <span class="stat-value" id="breakTime">0h 0m</span>
+                        </div>
+                    </div>
+                    <button id="resetProgressBtn" class="btn btn-small">Reset Daily Progress</button>
+                </div>
+            </div>
+
+            <!-- YouTube Player Section -->
+            <div class="youtube-card">
+                <div class="youtube-header">
+                    <h3>🎵 Focus Music</h3>
+                    <button id="togglePlayerBtn" class="btn-icon">▼</button>
+                </div>
+
+                <div class="youtube-content" id="youtubeContent">
+                    <!-- URL Input -->
+                    <div class="youtube-input">
+                        <input
+                            type="text"
+                            id="youtubeUrl"
+                            placeholder="Paste YouTube URL here..."
+                            class="input-field"
+                        >
+                        <button id="loadVideoBtn" class="btn btn-secondary">Load</button>
+                    </div>
+
+                    <!-- Presets -->
+                    <div class="presets">
+                        <span class="presets-label">Quick Presets:</span>
+                        <button class="preset-btn" data-url="https://www.youtube.com/watch?v=jfKfPfyJRdk">
+                            Lo-fi Hip Hop
+                        </button>
+                        <button class="preset-btn" data-url="https://www.youtube.com/watch?v=_tV5LEBDs7w">
+                            Classical Study
+                        </button>
+                        <button class="preset-btn" data-url="https://www.youtube.com/watch?v=BeUkNZdaMAU">
+                            Nature Sounds
+                        </button>
+                    </div>
+
+                    <!-- Player Container -->
+                    <div id="playerContainer" class="player-container"></div>
+
+                    <!-- Volume Control -->
+                    <div class="volume-control">
+                        <span class="volume-icon">🔊</span>
+                        <input
+                            type="range"
+                            id="volumeSlider"
+                            min="0"
+                            max="100"
+                            value="50"
+                            class="volume-slider"
+                        >
+                        <span id="volumeValue">50%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div class="settings-card">
+                <div class="settings-header">
+                    <h3>⚙️ Settings</h3>
+                    <button id="toggleSettingsBtn" class="btn-icon">▼</button>
+                </div>
+
+                <div class="settings-content" id="settingsContent">
+                    <div class="setting-group">
+                        <label for="workDuration">Work Duration (minutes)</label>
+                        <input
+                            type="number"
+                            id="workDuration"
+                            min="1"
+                            max="60"
+                            value="35"
+                            class="input-field"
+                        >
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="breakDuration">Break Duration (minutes)</label>
+                        <input
+                            type="number"
+                            id="breakDuration"
+                            min="1"
+                            max="30"
+                            value="10"
+                            class="input-field"
+                        >
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="dailyTarget">Daily Session Target</label>
+                        <input
+                            type="number"
+                            id="dailyTarget"
+                            min="1"
+                            max="20"
+                            value="11"
+                            class="input-field"
+                        >
+                    </div>
+
+                    <div class="setting-group setting-toggle">
+                        <label for="autoStartBreak">Auto-start breaks</label>
+                        <input
+                            type="checkbox"
+                            id="autoStartBreak"
+                            class="toggle-checkbox"
+                        >
+                    </div>
+
+                    <div class="setting-group setting-toggle">
+                        <label for="soundNotifications">Sound notifications</label>
+                        <input
+                            type="checkbox"
+                            id="soundNotifications"
+                            class="toggle-checkbox"
+                            checked
+                        >
+                    </div>
+
+                    <button id="saveSettingsBtn" class="btn btn-primary">Save Settings</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>Built for TOEIC learners | Stay consistent, achieve your goals 🚀</p>
+        </footer>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
