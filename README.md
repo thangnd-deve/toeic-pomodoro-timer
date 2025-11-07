@@ -1,11 +1,19 @@
-# 🎯 TOEIC Pomodoro Timer
+# 🎯 TOEIC Pomodoro Timer - Aesthetic Edition
 
-A modern, feature-rich Pomodoro timer web application specifically designed for TOEIC learners. Combines focused study sessions with YouTube music integration and comprehensive progress tracking.
+An **aesthetic, minimalist Pomodoro timer** web application specifically designed for TOEIC learners. Features a beautiful glass-morphism design with animated backgrounds, circular progress visualization, and seamless YouTube music integration.
 
-![TOEIC Pomodoro Timer](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![TOEIC Pomodoro Timer](https://img.shields.io/badge/version-2.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Design](https://img.shields.io/badge/design-aesthetic-purple.svg)
 
 ## ✨ Features
+
+### 🎨 Aesthetic Design
+- **Glass-morphism UI** with frosted glass effects
+- **Animated background** with gradient overlay
+- **Circular progress ring** with smooth animations
+- **Soft pastel colors** for a calming study environment
+- **Full-screen timer** for distraction-free focus
 
 ### Core Timer Functionality
 - **35-minute work sessions** and **10-minute breaks** (fully customizable)
@@ -34,11 +42,12 @@ A modern, feature-rich Pomodoro timer web application specifically designed for 
 - Settings include work/break durations, auto-start, and notifications
 
 ### Modern UI/UX
-- Clean, responsive design
-- Mobile-friendly (320px minimum width)
-- Smooth animations and transitions
-- Touch-friendly buttons (44px minimum)
-- Accessible keyboard navigation
+- **Sidebar navigation** with all controls organized
+- **Responsive design** - works on desktop, tablet, and mobile
+- **Smooth animations** with cubic-bezier easing
+- **Touch-friendly** interface for mobile devices
+- **Accessible** with keyboard navigation support
+- **Backdrop blur effects** for depth and visual hierarchy
 
 ## 🚀 Quick Start
 
@@ -107,20 +116,21 @@ python3 -m http.server 8000  # Then visit http://localhost:8000
 
 ```
 toeic-pomodoro-timer/
-├── index.html      # Main HTML structure
-├── styles.css      # All styling and responsive design
-├── script.js       # Application logic and functionality
+├── index.html      # Main HTML structure with sidebar layout
+├── styles.css      # Glass-morphism design with animations
+├── script.js       # Timer logic, progress ring, and YouTube integration
 └── README.md       # Documentation (this file)
 ```
 
 ### Technologies Used
 
-- **HTML5**: Semantic markup
-- **CSS3**: Modern styling with CSS Grid and Flexbox
-- **Vanilla JavaScript**: No frameworks or dependencies
-- **YouTube IFrame API**: Video embedding and control
-- **localStorage**: Data persistence
+- **HTML5**: Semantic markup with SVG for circular progress
+- **CSS3**: Glass-morphism, backdrop-filter, CSS animations
+- **Vanilla JavaScript**: No frameworks - pure performance
+- **YouTube IFrame API**: Hidden player for background music
+- **localStorage**: Persistent settings and progress
 - **Web Audio API**: Notification sounds
+- **SVG**: Circular progress ring with animated stroke
 
 ### Browser Compatibility
 
@@ -131,10 +141,10 @@ toeic-pomodoro-timer/
 
 ### Key Classes
 
-1. **PomodoroTimer**: Manages timer state and countdown logic
-2. **YouTubeController**: Handles YouTube API and video playback
-3. **StorageManager**: Manages localStorage operations
-4. **SettingsManager**: Handles settings UI and validation
+1. **PomodoroTimer**: Timer logic with circular progress ring animation
+2. **YouTubeController**: Background music player with hidden UI
+3. **StorageManager**: localStorage for settings and daily progress
+4. **SettingsManager**: Settings validation and persistence
 
 ## 🎨 Customization
 
@@ -144,12 +154,29 @@ Edit the CSS variables in `styles.css`:
 
 ```css
 :root {
-    --primary-blue: #3B82F6;
-    --success-green: #10B981;
-    --warning-orange: #F59E0B;
-    /* ... more colors ... */
+    /* Soft Pastel Colors */
+    --primary: rgba(159, 122, 234, 0.9);      /* Purple */
+    --secondary: rgba(255, 183, 197, 0.9);    /* Pink */
+    --accent: rgba(140, 233, 224, 0.9);       /* Cyan */
+    --success: rgba(168, 237, 174, 0.9);      /* Green */
+
+    /* Glass-morphism */
+    --glass-white: rgba(255, 255, 255, 0.15);
+    --blur-amount: 20px;
 }
 ```
+
+### Changing Background
+
+Replace the background video source in `index.html`:
+
+```html
+<video autoplay muted loop playsinline id="bgVideo">
+    <source src="YOUR_VIDEO_URL.mp4" type="video/mp4">
+</video>
+```
+
+Or use a static background gradient by removing the video element.
 
 ### Modifying Default Settings
 

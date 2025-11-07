@@ -3,182 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOEIC Pomodoro Timer</title>
+    <title>TOEIC Pomodoro Timer - Aesthetic Study Timer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>🎯 TOEIC Pomodoro Timer</h1>
-            <p class="subtitle">Stay focused, study smart</p>
-        </header>
+    <!-- Animated Background -->
+    <div class="background-overlay"></div>
+    <div class="background-video">
+        <video autoplay muted loop playsinline id="bgVideo">
+            <source src="https://cdn.pixabay.com/vimeo/251812231/sunset-12374.mp4?width=1280&hash=bb6a0a9e5e2b9ff8f3f78bf8f8c3c3b8c5f8f8f8" type="video/mp4">
+        </video>
+    </div>
 
-        <!-- Main Timer Section -->
-        <main>
-            <div class="timer-card">
-                <div class="session-type" id="sessionType">WORK SESSION</div>
-                <div class="timer-display" id="timerDisplay">35:00</div>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-toggle" id="sidebarToggle">
+            <span>☰</span>
+        </div>
 
-                <!-- Control Buttons -->
-                <div class="controls">
-                    <button id="startBtn" class="btn btn-primary">
-                        <span class="icon">▶</span> Start
-                    </button>
-                    <button id="pauseBtn" class="btn btn-secondary" disabled>
-                        <span class="icon">⏸</span> Pause
-                    </button>
-                    <button id="resetBtn" class="btn btn-danger">
-                        <span class="icon">⏹</span> Reset
-                    </button>
-                </div>
+        <div class="sidebar-content">
+            <!-- Logo/Brand -->
+            <div class="sidebar-brand">
+                <h2>🎯 TOEIC Timer</h2>
+            </div>
 
-                <!-- Progress Tracker -->
-                <div class="progress-section">
-                    <div class="progress-header">
-                        <span>Daily Progress</span>
-                        <span id="sessionCount">0/11</span>
+            <!-- Progress Section -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Daily Progress</h3>
+                <div class="progress-info">
+                    <div class="progress-count">
+                        <span class="count-number" id="sessionCount">0</span>
+                        <span class="count-label">/ 11 sessions</span>
                     </div>
                     <div class="progress-dots" id="progressDots"></div>
-                    <div class="study-stats">
-                        <div class="stat">
-                            <span class="stat-label">Study Time</span>
-                            <span class="stat-value" id="studyTime">0h 0m</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-label">Break Time</span>
-                            <span class="stat-value" id="breakTime">0h 0m</span>
-                        </div>
-                    </div>
-                    <button id="resetProgressBtn" class="btn btn-small">Reset Daily Progress</button>
                 </div>
             </div>
 
-            <!-- YouTube Player Section -->
-            <div class="youtube-card">
-                <div class="youtube-header">
-                    <h3>🎵 Focus Music</h3>
-                    <button id="togglePlayerBtn" class="btn-icon">▼</button>
-                </div>
-
-                <div class="youtube-content" id="youtubeContent">
-                    <!-- URL Input -->
-                    <div class="youtube-input">
-                        <input
-                            type="text"
-                            id="youtubeUrl"
-                            placeholder="Paste YouTube URL here..."
-                            class="input-field"
-                        >
-                        <button id="loadVideoBtn" class="btn btn-secondary">Load</button>
+            <!-- Stats Section -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-icon">📚</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Study Time</div>
+                            <div class="stat-value" id="studyTime">0h 0m</div>
+                        </div>
                     </div>
-
-                    <!-- Presets -->
-                    <div class="presets">
-                        <span class="presets-label">Quick Presets:</span>
-                        <button class="preset-btn" data-url="https://www.youtube.com/watch?v=jfKfPfyJRdk">
-                            Lo-fi Hip Hop
-                        </button>
-                        <button class="preset-btn" data-url="https://www.youtube.com/watch?v=_tV5LEBDs7w">
-                            Classical Study
-                        </button>
-                        <button class="preset-btn" data-url="https://www.youtube.com/watch?v=BeUkNZdaMAU">
-                            Nature Sounds
-                        </button>
-                    </div>
-
-                    <!-- Player Container -->
-                    <div id="playerContainer" class="player-container"></div>
-
-                    <!-- Volume Control -->
-                    <div class="volume-control">
-                        <span class="volume-icon">🔊</span>
-                        <input
-                            type="range"
-                            id="volumeSlider"
-                            min="0"
-                            max="100"
-                            value="50"
-                            class="volume-slider"
-                        >
-                        <span id="volumeValue">50%</span>
+                    <div class="stat-item">
+                        <div class="stat-icon">☕</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Break Time</div>
+                            <div class="stat-value" id="breakTime">0h 0m</div>
+                        </div>
                     </div>
                 </div>
+                <button id="resetProgressBtn" class="sidebar-btn">Reset Progress</button>
+            </div>
+
+            <!-- Music Section -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">🎵 Focus Music</h3>
+
+                <div class="music-presets">
+                    <button class="preset-btn" data-type="lofi">
+                        🎧 Lo-fi Beats
+                    </button>
+                    <button class="preset-btn" data-type="rain">
+                        🌧️ Rain Sounds
+                    </button>
+                    <button class="preset-btn" data-type="cafe">
+                        ☕ Cafe Ambience
+                    </button>
+                    <button class="preset-btn" data-type="nature">
+                        🌿 Nature Sounds
+                    </button>
+                    <button class="preset-btn" data-type="whitenoise">
+                        🌊 White Noise
+                    </button>
+                </div>
+
+                <p class="music-hint">💡 Simple ambient sounds to help you focus while studying.</p>
+
+                <!-- Music Controls -->
+                <div class="music-controls">
+                    <button id="playMusicBtn" class="music-control-btn" title="Play">
+                        ▶
+                    </button>
+                    <button id="pauseMusicBtn" class="music-control-btn" title="Pause">
+                        ⏸
+                    </button>
+                </div>
+
+                <div class="volume-control">
+                    <span class="volume-icon">🔊</span>
+                    <input
+                        type="range"
+                        id="volumeSlider"
+                        min="0"
+                        max="100"
+                        value="50"
+                        class="volume-slider"
+                    >
+                    <span id="volumeValue" class="volume-value">50%</span>
+                </div>
+
+                <!-- Audio Player -->
+                <audio id="audioPlayer" loop></audio>
             </div>
 
             <!-- Settings Section -->
-            <div class="settings-card">
-                <div class="settings-header">
-                    <h3>⚙️ Settings</h3>
-                    <button id="toggleSettingsBtn" class="btn-icon">▼</button>
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">⚙️ Settings</h3>
+
+                <div class="setting-item">
+                    <label for="workDuration">Work Duration</label>
+                    <input
+                        type="number"
+                        id="workDuration"
+                        min="1"
+                        max="60"
+                        value="35"
+                        class="sidebar-input"
+                    >
+                    <span class="input-suffix">min</span>
                 </div>
 
-                <div class="settings-content" id="settingsContent">
-                    <div class="setting-group">
-                        <label for="workDuration">Work Duration (minutes)</label>
-                        <input
-                            type="number"
-                            id="workDuration"
-                            min="1"
-                            max="60"
-                            value="35"
-                            class="input-field"
-                        >
-                    </div>
+                <div class="setting-item">
+                    <label for="breakDuration">Break Duration</label>
+                    <input
+                        type="number"
+                        id="breakDuration"
+                        min="1"
+                        max="30"
+                        value="10"
+                        class="sidebar-input"
+                    >
+                    <span class="input-suffix">min</span>
+                </div>
 
-                    <div class="setting-group">
-                        <label for="breakDuration">Break Duration (minutes)</label>
-                        <input
-                            type="number"
-                            id="breakDuration"
-                            min="1"
-                            max="30"
-                            value="10"
-                            class="input-field"
-                        >
-                    </div>
+                <div class="setting-item">
+                    <label for="dailyTarget">Daily Target</label>
+                    <input
+                        type="number"
+                        id="dailyTarget"
+                        min="1"
+                        max="20"
+                        value="11"
+                        class="sidebar-input"
+                    >
+                    <span class="input-suffix">sessions</span>
+                </div>
 
-                    <div class="setting-group">
-                        <label for="dailyTarget">Daily Session Target</label>
-                        <input
-                            type="number"
-                            id="dailyTarget"
-                            min="1"
-                            max="20"
-                            value="11"
-                            class="input-field"
-                        >
-                    </div>
+                <div class="setting-toggle">
+                    <label for="autoStartBreak">Auto-start breaks</label>
+                    <input
+                        type="checkbox"
+                        id="autoStartBreak"
+                        class="toggle-checkbox"
+                    >
+                </div>
 
-                    <div class="setting-group setting-toggle">
-                        <label for="autoStartBreak">Auto-start breaks</label>
-                        <input
-                            type="checkbox"
-                            id="autoStartBreak"
-                            class="toggle-checkbox"
-                        >
-                    </div>
+                <div class="setting-toggle">
+                    <label for="soundNotifications">Sound notifications</label>
+                    <input
+                        type="checkbox"
+                        id="soundNotifications"
+                        class="toggle-checkbox"
+                        checked
+                    >
+                </div>
 
-                    <div class="setting-group setting-toggle">
-                        <label for="soundNotifications">Sound notifications</label>
-                        <input
-                            type="checkbox"
-                            id="soundNotifications"
-                            class="toggle-checkbox"
-                            checked
-                        >
-                    </div>
+                <button id="saveSettingsBtn" class="sidebar-btn btn-primary">Save Settings</button>
+            </div>
+        </div>
+    </aside>
 
-                    <button id="saveSettingsBtn" class="btn btn-primary">Save Settings</button>
+    <!-- Main Content - Timer -->
+    <main class="main-content">
+        <div class="timer-container">
+            <div class="session-badge" id="sessionType">WORK SESSION</div>
+
+            <div class="timer-circle">
+                <svg class="timer-ring" width="400" height="400">
+                    <circle
+                        class="timer-ring-bg"
+                        cx="200"
+                        cy="200"
+                        r="180"
+                    ></circle>
+                    <circle
+                        class="timer-ring-progress"
+                        id="timerRing"
+                        cx="200"
+                        cy="200"
+                        r="180"
+                    ></circle>
+                </svg>
+
+                <div class="timer-content">
+                    <div class="timer-display" id="timerDisplay">35:00</div>
+                    <div class="timer-label">Stay Focused</div>
                 </div>
             </div>
-        </main>
 
-        <!-- Footer -->
-        <footer>
-            <p>Built for TOEIC learners | Stay consistent, achieve your goals 🚀</p>
-        </footer>
-    </div>
+            <div class="timer-controls">
+                <button id="startBtn" class="control-btn control-btn-primary">
+                    <span class="control-icon">▶</span>
+                </button>
+                <button id="pauseBtn" class="control-btn control-btn-secondary" disabled>
+                    <span class="control-icon">⏸</span>
+                </button>
+                <button id="resetBtn" class="control-btn control-btn-tertiary">
+                    <span class="control-icon">⟳</span>
+                </button>
+            </div>
+        </div>
+    </main>
 
     <!-- Notification Container -->
     <div id="notification" class="notification"></div>
